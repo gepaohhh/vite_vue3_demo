@@ -30,6 +30,16 @@ const routes: Array<RouteRecordRaw> = [
             requireAuth: true
         },
         component: () => import('@/pages/vueUse_test.vue')
+    },
+    {
+        path: '/map_test',
+        name: 'map_test',
+        meta: {
+            title: 'vueUse测试',
+            keepAlive: true,
+            requireAuth: true
+        },
+        component: () => import('@/pages/map_test.vue')
     }
 ]
 
