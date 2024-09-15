@@ -2,14 +2,15 @@ import * as path from "path";
 import { title } from "process";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
-const routes: Array<RouteRecordRaw> = [
+const DataRoutes: Array<RouteRecordRaw> = [
     {
         path: '/',
         name: 'Index',
         meta: {
             title: '首页',
             keepAlive: true,
-            requireAuth: true
+            requireAuth: true,
+            SideBar: true
         },
         component: () => import('@/pages/HomePage/index.vue')
     },
@@ -19,7 +20,8 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
             title: '数据管理',
             keepAlive: true,
-            requireAuth: true
+            requireAuth: true,
+            SideBar: true
         },
         component: () => import('@/pages/DataManager/index.vue')
     },
@@ -29,14 +31,15 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
             title: '作物分析',
             keepAlive: true,
-            requireAuth: true
+            requireAuth: true,
+            SideBar: false
         },
-        component: () => import('@/pages/CropAnalysis/index.vue')
+        component: () => import('@/pages/CropAnalysis/index_z.vue')
     },
 ]
 
-const router = createRouter({
+const DataRouter = createRouter({
     history: createWebHistory(),
-    routes
+    routes: DataRoutes
 });
-export default router;
+export default DataRouter;

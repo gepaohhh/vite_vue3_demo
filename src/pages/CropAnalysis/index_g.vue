@@ -1,9 +1,9 @@
 <template>
     <div>
-        <el-container class="MapContainer"">
+        <el-container class="MapContainer">
           <div id="TangShanMap" class="map"></div>
         </el-container>
-        <el-container class="ProToolContainer"">
+        <el-container class="ProToolContainer">
           <el-aside>
               <CropAnalysisSide />
           </el-aside>
@@ -64,7 +64,7 @@ export default {
 
 /* 地图属性工具外边框布局 */
 .MapContainer{
-    /* width: 75%; */
+    width: 75%;
 }
 
 .ProToolContainer{

@@ -10,13 +10,4 @@ export default {
 </script>
 
 <style scoped>
-    .up{
-        background-color: blue;
-        /* height: 50%; */
-    }
-
-    .down{
-        background-color: green;
-        /* height: 50%; */
-    }
 </style>

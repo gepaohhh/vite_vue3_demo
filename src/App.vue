@@ -1,12 +1,13 @@
 <template>
     <div>
         <el-container>
-            <el-aside width="200px">
+            <el-aside width="200px" v-if="$route.meta.SideBar">
                 <SiderNav
                     :isCollapse="false"
                 />
             </el-aside>
             <el-container>
+                <!-- <div>ssss</div> -->
                 <!-- <el-header style="height: 60px; display: flex; align-items: center;
                 box-shadow: 2px 0 6px rgba(0, 21, 41, .35);">
                     <header-nav />
