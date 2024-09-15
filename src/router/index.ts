@@ -1,46 +1,38 @@
+import * as path from "path";
+import { title } from "process";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
     {
-        path: '/login',
-        name: 'LoginPage',
-        meta: {
-            title: '登录',
-            keepAlive: true,
-            requireAuth: false
-        },
-        component: () => import('@/pages/login.vue')
-    },
-    {
-        path: '/Index',
+        path: '/',
         name: 'Index',
         meta: {
             title: '首页',
             keepAlive: true,
             requireAuth: true
         },
-        component: () => import('@/pages/index.vue')
+        component: () => import('@/pages/HomePage/index.vue')
     },
     {
-        path: '/vueUse_test',
-        name: 'vueUse_test',
+        path: '/DataManager',
+        name: 'DataManager',
         meta: {
-            title: 'vueUse测试',
+            title: '数据管理',
             keepAlive: true,
             requireAuth: true
         },
-        component: () => import('@/pages/vueUse_test.vue')
+        component: () => import('@/pages/DataManager/index.vue')
     },
     {
-        path: '/map_test',
-        name: 'map_test',
+        path: '/CropAnalysis',
+        name: 'CropAnalysis',
         meta: {
-            title: 'vueUse测试',
+            title: '作物分析',
             keepAlive: true,
             requireAuth: true
         },
-        component: () => import('@/pages/map_test.vue')
-    }
+        component: () => import('@/pages/CropAnalysis/index.vue')
+    },
 ]
 
 const router = createRouter({
