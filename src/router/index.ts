@@ -10,7 +10,7 @@ const DataRoutes: Array<RouteRecordRaw> = [
             title: '首页',
             keepAlive: true,
             requireAuth: true,
-            SideBar: true
+            DataSideBar: true,
         },
         component: () => import('@/pages/HomePage/index.vue')
     },
@@ -21,9 +21,9 @@ const DataRoutes: Array<RouteRecordRaw> = [
             title: '数据管理',
             keepAlive: true,
             requireAuth: true,
-            SideBar: true
+            DataSideBar: true
         },
-        component: () => import('@/pages/DataManager/index.vue')
+        component: () => import('@/pages/DataManager/index.vue'),
     },
     {
         path: '/CropAnalysis',
@@ -32,9 +32,9 @@ const DataRoutes: Array<RouteRecordRaw> = [
             title: '作物分析',
             keepAlive: true,
             requireAuth: true,
-            SideBar: false
+            DataSideBar: false
         },
-        component: () => import('@/pages/CropAnalysis/index_z.vue')
+        component: () => import('@/pages/CropAnalysis/index.vue')
     },
 ]
 

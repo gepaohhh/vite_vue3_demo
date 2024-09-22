@@ -8,7 +8,6 @@
     <!--fff：菜单选中时为白色。rgba(255, 255, 255, 0.65)：没有选中时候为淡灰色。还有加载当前的路由路径。边框为无边框  -->
     <el-menu
         router
-        :collapse="isCollapse"
         :collapse-transition="false"
         background-color="#001529"
         active-text-color="#fff"
@@ -24,11 +23,6 @@
             <i class="el-icon-s-home"></i>
             <span slot="title">数据管理</span>
         </el-menu-item>
-        <!-- <el-sub-menu index="3">
-            <template #title><i class="el-icon-menu"></i>作物分析</template>
-            <el-menu-item index="/work">玉米</el-menu-item>
-            <el-menu-item index="/rest">小麦</el-menu-item>
-        </el-sub-menu> -->
     </el-menu>
 </template>
 
@@ -36,7 +30,6 @@
 export default {
     name: 'Aside',
     props: {
-        isCollapse: Boolean
         // 其他需要的 props
     }
     // 其他逻辑和方法

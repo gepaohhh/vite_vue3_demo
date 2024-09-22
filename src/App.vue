@@ -1,10 +1,8 @@
 <template>
     <div>
         <el-container>
-            <el-aside width="200px" v-if="$route.meta.SideBar">
-                <SiderNav
-                    :isCollapse="false"
-                />
+            <el-aside width="200px" v-if="$route.meta.DataSideBar">
+                <SiderNav />
             </el-aside>
             <el-container>
                 <!-- <div>ssss</div> -->
@@ -21,15 +19,15 @@
 </template>
 
 <script lang="ts">
-    import Aside from '@/components/Sider.vue';
-    import Header from '@/components/Header.vue';
-
-    export default{
-        components: {
-            SiderNav: Aside,
-            HeaderNav: Header
-        }
-    }
+import Aside from '@/components/Sider.vue';
+import Header from '@/components/Header.vue';
+    
+export default{
+    components: {
+        SiderNav: Aside,
+        HeaderNav: Header
+    },
+}
 </script>
 
 <style scoped>
@@ -40,5 +38,8 @@
   min-height: 100vh;  /* 菜单栏整体高度 */
   transition: width .3s;  /* 菜单栏展开收缩的整体时间0.3s */
   float: left;
+}
+.el-main {
+    padding: 0px;
 }
 </style>

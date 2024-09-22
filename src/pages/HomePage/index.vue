@@ -1,15 +1,15 @@
 <template>
-  <div>
+  <div style="padding: 10px;">
     首页
   </div>
 </template>
 
 <script lang='ts'>
-  import { defineComponent } from 'vue';
+import axios from 'axios';
+// import { onMounted, reactive } from 'vue';
 
-  export default defineComponent({
-    
-  })
+export default{
+}
 </script>
 
 <style lang="scss" scoped></style>
