@@ -1,56 +1,72 @@
 <template>
-    <div id="map" style="width: 100%; height: 100%;"></div>
+    <!-- 加载地图 -->
+    <el-container>
+      <div id="TangShanMap" class="map"></div>
+    </el-container>
 </template>
   
 <script name="LeafletDraw">
-import { onMounted, ref } from 'vue';
-import L from 'leaflet';
-import '../../../../node_modules/leaflet/dist/leaflet.css';
-// import 'leaflet-draw/dist/leaflet.draw.css';
-// import 'leaflet-draw';
+import { onMounted, reactive, ref } from 'vue';
+import { View, Map } from 'ol';
+import TileLayer from 'ol/layer/Tile';
+import Source from 'ol/source/ImageTile.js';
+import { TileWMS } from 'ol/source';
 
 export default{
-  // ------------------methods  提供方法------------------
-  methods: {
-    initMap() {
-      console.log("init map")
-      let baseMap = ref(null)
-      // !!!!!!!!!!!!!!!!!!!查看Map类型
-      const popupsMap = ref(new Map())
-      baseMap.value = L.map('map').setView([39.4315, 117.9345], 18)
-      // ************调用ESRI地图************
-      let Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-      });
-      Esri_WorldImagery.addTo(baseMap.value);
-      console.log("add esri map")
-      // ************从Geoserver调用本地地图方法************
-      // let geo_base_map = L.tileLayer.wms("http://localhost:8080/geoserver/web/wicket/bookmarkable/org.geoserver.web.demo.MapPreviewPage?3&filter=false", {
-      //   layers:'nurc:mosaic',
-      //   format:'image/jpg',
-      //   transparent:false,
-      // });
-      // geo_base_map.addTo(map.value);
-      // ************添加比例尺************
-      // L.control.scale().addTo(map.value);
-    },
-  },
-  mounted() {
-    this.initMap()
-  },
-  // ------------------data  提供基础数据------------------
-  data() {
-
-  },
   setup() {
+    // openlayer 参数
+    const target = 'TangShanMap'
+    const view = new View({
+      center: [117.9345, 39.4315],
+      zoom: 17,
+      maxZoom: 18,
+      projection: "EPSG:4326"
+    })
+    const base_layer = new TileLayer({
+      source: new Source({
+        url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+      })
+    })
+      //LAYERS参数多个图层名称，中间用“,”隔开***
+    let test_layer = new TileLayer({
+      source: new TileWMS({
+        url:'http://localhost:8080/geoserver/TangShanRS/wms',    
+        params:{    
+        'LAYERS':'TangShanRS:崔庄户20240729全波段新',
+        'TILED':false
+        },
+        serverType:'geoserver'
+      })
+    })
+    let layers = reactive({list: [base_layer, test_layer]})
+    // ----------------------------生成地图----------------------------
+    function initMap() {
+      new Map({
+        // 目标div中的id
+        target: target,
+        // 图层来源
+        layers: layers.list,
+        // 地图展示方法
+        view: view,
+      });
+      console.log("finish map load!!!!!!")
+    }
+
+    onMounted(() => {
+      initMap()
+    })
+
+    return {
+      initMap
+    }
   }
 }
 </script>
   
 <style scoped>
-  #map {
+  .map {
     width: 100%;
-    height: 85vh;
+    height: 100vh;
   }
 </style>
   

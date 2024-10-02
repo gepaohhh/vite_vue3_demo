@@ -4,20 +4,19 @@
       左侧
     </div> -->
     <el-aside class="left">
-      
+      <side-tools />
     </el-aside>
     <el-main class="middle">
       <LeafletDraw />
     </el-main>
     <el-aside class="right">
-      
+      <side-properties />
     </el-aside>
   </div>
 </template>
 
 <script lang="ts">
 import { ref } from 'vue';
-import LeafletDraw from '@/pages/CropAnalysis/components/MiddleLeafletDraw.vue';
 import {
   Document,
   Menu as IconMenu,
@@ -25,41 +24,15 @@ import {
   Setting,
 } from '@element-plus/icons-vue';
 
+import LeafletDraw from '@/pages/CropAnalysis/components/MiddleLeafletDraw.vue';
+import SideTools from './components/SideTools.vue';
+import SideProperties from './components/SideProperties.vue';
+
 export default{
-  components: {LeafletDraw,Document,IconMenu,Location,Setting,},
+  components: {Document,IconMenu,Location,Setting,
+    SideTools,LeafletDraw,SideProperties},
   setup() {
-    const showCornMenu = ref(true);
-    const showWheatMenu = ref(true);
-    const showSoilMenu = ref(true);
-    function toggleCornMenu() {showCornMenu.value = !showCornMenu.value;}
-    function toggleWheatMenu() {showWheatMenu.value = !showWheatMenu.value;}
-    function toggleSoilMenu() {showSoilMenu.value = !showSoilMenu.value;}
-    function importMap() {}
-    function displayWheat() {}
-    function displayCorn() {}
-    function displaySoil() {}
-    function exportReport() {}
-    const handleOpen = (key: string, keyPath: string[]) => {
-      console.log(key, keyPath)
-    }
-    const handleClose = (key: string, keyPath: string[]) => {
-      console.log(key, keyPath)
-    }
-    return{
-      handleOpen,
-      handleClose,
-      toggleCornMenu,
-      toggleWheatMenu,
-      toggleSoilMenu,
-      importMap,
-      displayWheat,
-      displayCorn,
-      displaySoil,
-      exportReport,
-      showCornMenu,
-      showWheatMenu,
-      showSoilMenu,
-    }
+    
   }
 }
 </script>
@@ -80,7 +53,7 @@ export default{
 }
 .right {
   flex: 1;
-  max-width: 15%;
+  max-width: 25%;
 }
 .el-main{
   padding: 0px;
